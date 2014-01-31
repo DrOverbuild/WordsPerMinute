@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2014. Jasper Reddin.
+ * All Rights Reserved.
+ */
+
 //
 // Code found from
 // http://www.mkyong.com/java/how-to-detect-os-in-java-systemgetpropertyosname/

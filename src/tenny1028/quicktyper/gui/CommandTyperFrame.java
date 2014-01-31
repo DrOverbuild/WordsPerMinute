@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2014. Jasper Reddin.
+ * All Rights Reserved.
+ */
+
 package tenny1028.quicktyper.gui;
 
 import com.sun.javafx.scene.control.skin.LabeledImpl;
