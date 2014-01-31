@@ -1,6 +1,7 @@
 package tenny1028.quicktyper.gui;
 
 import com.sun.javafx.scene.control.skin.LabeledImpl;
+import tenny1028.quicktyper.Main;
 import tenny1028.quicktyper.command.Command;
 import tenny1028.quicktyper.command.CommandNotFoundException;
 import tenny1028.quicktyper.command.HelpCommand;
@@ -19,9 +20,6 @@ import java.util.ArrayList;
  */
 public class CommandTyperFrame extends JFrame implements ActionListener, KeyListener{
 
-	// Version
-	public static final float VERSION_ID = 0.1f;
-
 	public JTextArea consoleMessages;
 	public JScrollPane scrollPane;
 	public JTextField input;
@@ -31,7 +29,7 @@ public class CommandTyperFrame extends JFrame implements ActionListener, KeyList
 	public CommandTyperFrame(){
 
 		// Setup GUI
-		super("CommandTyperFrame " + VERSION_ID);
+		super("CommandTyperFrame " + Main.VERSION_ID);
 		BorderLayout b33 = new BorderLayout(5,5);
 		setLayout(b33);
 

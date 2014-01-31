@@ -21,7 +21,7 @@ public class Main {
 
 	public static String libraryFolder;
 
-	public static float VERSION_ID = 0.1f;
+	public static final float VERSION_ID = 0.1f;
 
     public static void main(String[] args) {
 	// write your code here
@@ -132,10 +132,10 @@ public class Main {
 		}
 
 	}
-	public static File getProfile(String name){
+	public static File getProfile(String profile){
 		String filename;
-		if(name.endsWith(".wpmprofile")) filename = profilesDirectory.getAbsolutePath()+System.getProperty("file.separator") + name;
-		else filename = profilesDirectory.getAbsolutePath() +System.getProperty("file.separator")+name+".wpmprofile";
+		if(profile.endsWith(".wpmprofile")) filename = profilesDirectory.getAbsolutePath()+System.getProperty("file.separator") + profile;
+		else filename = profilesDirectory.getAbsolutePath() +System.getProperty("file.separator")+profile+".wpmprofile";
 		return new File(filename);
 	}
 
