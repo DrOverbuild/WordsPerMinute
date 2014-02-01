@@ -5,10 +5,9 @@
 
 package tenny1028.quicktyper.gui;
 
-import com.sun.javafx.scene.control.skin.LabeledImpl;
 import tenny1028.quicktyper.Main;
 import tenny1028.quicktyper.command.Command;
-import tenny1028.quicktyper.command.CommandNotFoundException;
+import tenny1028.quicktyper.exceptions.CommandNotFoundException;
 import tenny1028.quicktyper.command.HelpCommand;
 import tenny1028.quicktyper.command.SayCommand;
 

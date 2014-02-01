@@ -3,7 +3,7 @@
  * All Rights Reserved.
  */
 
-package tenny1028.quicktyper.command;
+package tenny1028.quicktyper.exceptions;
 
 /**
  * Created by jasper on 1/27/14.

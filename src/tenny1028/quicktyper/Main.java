@@ -5,6 +5,7 @@
 
 package tenny1028.quicktyper;
 
+import tenny1028.quicktyper.exceptions.FileAlreadyExistsException;
 import tenny1028.quicktyper.gui.CommandTyperFrame;
 import tenny1028.quicktyper.gui.HelpSection;
 import tenny1028.quicktyper.gui.ProfileChooser;
@@ -27,12 +28,16 @@ public class Main {
 	public static String libraryFolder;
 
 	public static final float VERSION_ID = 0.1f;
+	public static final String newline = System.getProperty("line.separator");
 
     public static void main(String[] args) {
-	// write your code here
+
+	    // Check for update
 	    if(checkForUpdate()){
-		    System.out.println("Needs an update!");
-		    int userWantsToUpdate = JOptionPane.showConfirmDialog(null, "An update is available. Do you want to update?", "Update available!", JOptionPane.YES_NO_OPTION);
+		    int userWantsToUpdate = JOptionPane.showConfirmDialog(null,
+				    "An update is available. Do you want to update?",
+				    "Update available!",
+				    JOptionPane.YES_NO_OPTION);
 		    if(userWantsToUpdate == 0){
 			    // Open browser to GitHub repo
 			    String url = "https://github.com/tenny1028/WordsPerMinute/releases";
@@ -43,10 +48,10 @@ public class Main {
 			    }
 			    System.exit(0);
 		    }
-	    }else{
-		    System.out.println("Up to date!");
 	    }
+
 	    boolean hasBeenOpened = createNeededFiles();
+
 	    Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 
 		    public void run() {
@@ -59,7 +64,7 @@ public class Main {
 		    String s = JOptionPane.showInputDialog(null, "Type name of new profile: ", "Create new profile", JOptionPane.PLAIN_MESSAGE);
 		    createProfile(s);
 	    }else{
-			new ProfileChooser();
+		    new ProfileChooser();
 	    }
 
 
@@ -117,15 +122,33 @@ public class Main {
 		}
 		return hasBeenOpened;
 	}
-	public static void createProfile(String profileName){
-		String userProfileFilePath = profilesDirectory.getPath() + System.getProperty("file.separator")+profileName+".wpmprofile";
+	public static void createProfile(String profileName) throws FileAlreadyExistsException {
+		String userProfileFilePath;
+		if(!profileName.endsWith(".wpmprofile")) userProfileFilePath = profilesDirectory.getPath() + System.getProperty("file.separator")+profileName+".wpmprofile";
+		else userProfileFilePath = profilesDirectory.getPath() + System.getProperty("file.separator")+profileName;
 		File userProfile = new File(userProfileFilePath);
 		if(!userProfile.exists()){
 			try{
 				userProfile.createNewFile();
 			}catch(SecurityException | IOException e){
 			}
+			// Write default numbers for statistics:
+			BufferedWriter writer = null;
+			try {
+				writer = new BufferedWriter(new FileWriter(userProfile));
+				writer.write("0.0"+newline+"0.0"+newline+"0.0");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					writer.close();
+				} catch (Exception e) {
+				}
+			}
+		}else{
+			throw new FileAlreadyExistsException(userProfileFilePath + " Already exists!", userProfile.getName());
 		}
+
 	}
 	public static void openProfile(String filepath){
 		BufferedWriter writer = null;
@@ -150,7 +173,7 @@ public class Main {
 	 */
 	public static boolean checkForUpdate(){
 		try {
-			URL website = new URL("http://tenny1028.github.io/WordsPerMinute");
+			URL website = new URL("http://tenny1028.github.io/WordsPerMinute/version");
 			Scanner websiteReader = new Scanner(website.openStream());
 			String versionID = websiteReader.nextLine();
 			return !versionID.equals("VERSION_ID = " + VERSION_ID);

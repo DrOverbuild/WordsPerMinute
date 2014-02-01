@@ -6,17 +6,21 @@
 package tenny1028.quicktyper.gui;
 
 import tenny1028.quicktyper.Main;
+import tenny1028.quicktyper.Profile;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Created by jasper on 1/28/14.
  */
-public class ProfileChooser extends JFrame {
+public class ProfileChooser extends JFrame implements ActionListener{
+
+	final JComboBox<String> jComboBox;
 
 	public ProfileChooser(){
 		File[] allProfiles = Main.profilesDirectory.listFiles();
@@ -24,17 +28,19 @@ public class ProfileChooser extends JFrame {
 		for(int i = 0; i < allProfiles.length;i++){
 			allProfilesNames[i]=allProfiles[i].getName();
 		}
-		final JComboBox<String> jComboBox = new JComboBox<String>(allProfilesNames);
+		jComboBox = new JComboBox<String>(allProfilesNames);
 		JLabel label = new JLabel("Choose profile to open: ");
 		JButton button1 = new JButton("Choose");
+		button1.addActionListener(this);
 		JButton button2 = new JButton("New Profile");
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String s = JOptionPane.showInputDialog(null, "Type name of new profile: ", "Create new profile", JOptionPane.PLAIN_MESSAGE);
 				Main.createProfile(s);
-				jComboBox.addItem(s);
+				jComboBox.addItem(s+".wpmprofile");
 				pack();
+				jComboBox.setSelectedItem(s+".wpmprofile");
 			}
 		});
 		JButton button3 = new JButton("Delete Selected Profile");
@@ -71,4 +77,14 @@ public class ProfileChooser extends JFrame {
 
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		try {
+			Profile profile = new Profile((String) jComboBox.getSelectedItem());
+			new ProfileViewer(profile);
+			dispose();
+		} catch(FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+	}
 }
