@@ -9,6 +9,8 @@ import tenny1028.quicktyper.Profile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by jasper on 1/31/14.
@@ -33,9 +35,15 @@ public class ProfileViewer extends JFrame {
 	public void createGUIComponents(){
 		setTitle("Profile");
 		setLayout(new BorderLayout());
+		addLabels();
+		add(addButtons(),BorderLayout.PAGE_END);
+
+
+	}
+
+	public void addLabels(){
 		JPanel statsLabels = new JPanel(new GridLayout(4,1,4,4));
 		JPanel stats = new JPanel(new GridLayout(4,1,4,4));
-
 		Font boldFont = new Font(Font.DIALOG,Font.BOLD,12);
 
 		JLabel statsLabel = new JLabel("Stats",JLabel.CENTER);
@@ -71,4 +79,52 @@ public class ProfileViewer extends JFrame {
 		add(stats,BorderLayout.EAST);
 	}
 
+	public JPanel addButtons(){
+		JPanel panel = new JPanel(new BorderLayout());
+		JPanel twoByTwo = new JPanel(new GridLayout(2,2));
+
+
+		// Initialize buttons
+		JButton freeType = new JButton("Free Type");
+		JButton accuracyType = new JButton("Accuracy Type");
+		JButton profOptions = new JButton("Profile Options");
+		JButton switchProfile = new JButton("Switch Profile");
+		JButton help = new JButton("Help");
+
+		// Action Listeners
+		freeType.addActionListener(null);
+		accuracyType.addActionListener(null);
+		profOptions.addActionListener(null);
+		switchProfile.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ProfileChooser();
+				close();
+			}
+		});
+		help.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new HelpSection();
+			}
+		});
+
+		// Add buttons to panel
+		twoByTwo.add(freeType);
+		twoByTwo.add(accuracyType);
+		twoByTwo.add(profOptions);
+		twoByTwo.add(switchProfile);
+
+		// Add components to bigger panel
+		panel.add(twoByTwo,BorderLayout.PAGE_START);
+		panel.add(help,BorderLayout.PAGE_END);
+
+		// Return
+		return panel;
+	}
+
+	public void close(){
+		profile.save();
+		dispose();
+	}
 }

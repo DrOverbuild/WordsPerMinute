@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Main {
@@ -61,8 +62,8 @@ public class Main {
 
 	    if(!hasBeenOpened){
 		    new HelpSection();
-		    String s = JOptionPane.showInputDialog(null, "Type name of new profile: ", "Create new profile", JOptionPane.PLAIN_MESSAGE);
-		    createProfile(s);
+		    createProfileGUI();
+
 	    }else{
 		    new ProfileChooser();
 	    }
@@ -153,17 +154,28 @@ public class Main {
 	public static void openProfile(String filepath){
 		BufferedWriter writer = null;
 		try {
-			writer = new BufferedWriter(new FileWriter(lastLoginFile.getName()));
+			writer = new BufferedWriter(new FileWriter(lastLoginFile.getAbsolutePath()));
 			writer.write(filepath);
+			writer.flush();
 			previouslyOpenedProfile = new File(filepath);
+			writer.close();
 		} catch(IOException e) {
+		}
+
+	}
+	public static String getLastOpened(){
+		try {
+			Scanner scanner = new Scanner(lastLoginFile);
+			return scanner.nextLine();
+		} catch(FileNotFoundException e) {
+			return null;
 		}
 
 	}
 	public static File getProfile(String profile){
 		String filename;
-		if(profile.endsWith(".wpmprofile")) filename = profilesDirectory.getAbsolutePath()+System.getProperty("file.separator") + profile;
-		else filename = profilesDirectory.getAbsolutePath() +System.getProperty("file.separator")+profile+".wpmprofile";
+		if(profile.endsWith(".wpmprofile")) filename = profilesDirectory.getAbsolutePath() + System.getProperty("file.separator") + profile;
+		else filename = profilesDirectory.getAbsolutePath() + System.getProperty("file.separator") + profile + ".wpmprofile";
 		return new File(filename);
 	}
 
@@ -179,10 +191,24 @@ public class Main {
 			return !versionID.equals("VERSION_ID = " + VERSION_ID);
 		} catch(MalformedURLException e) {
 			e.printStackTrace();
+		} catch(UnknownHostException e){
+			System.out.println("[NOTICE] No internet connection or update server is not available.");
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		return false;
 
+	}
+
+	public static String createProfileGUI(){
+		String s = JOptionPane.showInputDialog(null, "Type name of new profile: ", "Create new profile", JOptionPane.PLAIN_MESSAGE);
+		try{
+			createProfile(s);
+			return s;
+		}catch(FileAlreadyExistsException e){
+			JOptionPane.showMessageDialog(null, e.getNameOfFile()+" already exists.");
+			return createProfileGUI();
+
+		}
 	}
 }

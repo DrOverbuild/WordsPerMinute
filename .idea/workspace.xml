@@ -64,31 +64,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="112" selection-start="4843" selection-end="4843" vertical-scroll-proportion="0.7890772" vertical-offset="436" max-vertical-offset="1095">
+            <state line="165" column="40" selection-start="5121" selection-end="5121" vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="765">
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#main#0;class#Main#0" expanded="false" />
                 <element signature="method#println#0;class#Main#0" expanded="false" />
                 <element signature="docComment;method#createNeededFiles#0;class#Main#0" expanded="false" />
                 <element signature="method#createNeededFiles#0;class#Main#0" expanded="false" />
-                <element signature="method#openProfile#0;class#Main#0" expanded="false" />
+                <element signature="method#createProfile#0;class#Main#0" expanded="false" />
+                <element signature="method#getLastOpened#0;class#Main#0" expanded="false" />
                 <element signature="method#getProfile#0;class#Main#0" expanded="false" />
                 <element signature="docComment;method#checkForUpdate#0;class#Main#0" expanded="false" />
                 <element signature="method#checkForUpdate#0;class#Main#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileAlreadyExistsException.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/exceptions/FileAlreadyExistsException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="35" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-              <folding>
-                <element signature="e#320#321#0" expanded="true" />
+                <element signature="method#createProfileGUI#0;class#Main#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -97,18 +87,22 @@
       <file leaf-file-name="ProfileViewer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="32" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="611" max-vertical-offset="1155">
+            <state line="107" column="34" selection-start="2976" selection-end="2976" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="915">
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#ProfileViewer#0" expanded="false" />
+                <element signature="method#ProfileViewer#0;class#ProfileViewer#0" expanded="false" />
+                <element signature="method#createGUIComponents#0;class#ProfileViewer#0" expanded="false" />
+                <element signature="method#addLabels#0;class#ProfileViewer#0" expanded="false" />
+                <element signature="method#close#0;class#ProfileViewer#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileChooser.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ProfileChooser.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileChooser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="59" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1185">
+            <state line="81" column="54" selection-start="2480" selection-end="2480" vertical-scroll-proportion="1.6819853" vertical-offset="0" max-vertical-offset="1155">
               <folding />
             </state>
           </provider>
@@ -117,18 +111,8 @@
       <file leaf-file-name="Profile.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Profile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="62" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="855">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#355#356#0" expanded="true" />
-                <element signature="e#373#374#0" expanded="true" />
-                <element signature="e#407#408#0" expanded="true" />
-                <element signature="e#432#433#0" expanded="true" />
-                <element signature="e#466#467#0" expanded="true" />
-                <element signature="e#491#492#0" expanded="true" />
-                <element signature="e#529#530#0" expanded="true" />
-                <element signature="e#558#559#0" expanded="true" />
-              </folding>
+            <state line="62" column="94" selection-start="1378" selection-end="1378" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1065">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,11 +143,11 @@
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/gui/CommandTyperFrame.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/gui/HelpSection.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/OSValidator.java" />
+        <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/exceptions/FileAlreadyExistsException.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/Profile.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileViewer.java" />
-        <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileChooser.java" />
-        <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/exceptions/FileAlreadyExistsException.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/Main.java" />
+        <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileChooser.java" />
       </list>
     </option>
   </component>
@@ -490,7 +474,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18194444" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13194445" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -517,17 +501,79 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="156" column="20" selection-start="5192" selection-end="5192" vertical-scroll-proportion="0.0" vertical-offset="2340" max-vertical-offset="2400">
+        <state line="148" column="112" selection-start="4843" selection-end="4843" vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="1095">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#main#0;class#Main#0" expanded="false" />
             <element signature="method#println#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#createNeededFiles#0;class#Main#0" expanded="false" />
             <element signature="method#createNeededFiles#0;class#Main#0" expanded="false" />
-            <element signature="method#openProfile#0;class#Main#0" expanded="false" />
+            <element signature="method#createProfile#0;class#Main#0" expanded="false" />
+            <element signature="method#getLastOpened#0;class#Main#0" expanded="false" />
             <element signature="method#getProfile#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#checkForUpdate#0;class#Main#0" expanded="false" />
             <element signature="method#checkForUpdate#0;class#Main#0" expanded="false" />
+            <element signature="method#createProfileGUI#0;class#Main#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/exceptions/FileAlreadyExistsException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="35" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="435">
+          <folding>
+            <element signature="e#320#321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="32" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1200">
+          <folding>
+            <element signature="docComment;class#ProfileViewer#0" expanded="false" />
+            <element signature="method#ProfileViewer#0;class#ProfileViewer#0" expanded="false" />
+            <element signature="method#createGUIComponents#0;class#ProfileViewer#0" expanded="false" />
+            <element signature="method#addLabels#0;class#ProfileViewer#0" expanded="false" />
+            <element signature="method#close#0;class#ProfileViewer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="59" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1440">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="62" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/HelpSection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="156" column="20" selection-start="5192" selection-end="5192" vertical-scroll-proportion="0.0" vertical-offset="2340" max-vertical-offset="2400">
+          <folding>
+            <element signature="method#main#0;class#Main#0" expanded="false" />
+            <element signature="method#println#0;class#Main#0" expanded="false" />
+            <element signature="docComment;method#createNeededFiles#0;class#Main#0" expanded="false" />
+            <element signature="method#createNeededFiles#0;class#Main#0" expanded="false" />
+            <element signature="method#createProfile#0;class#Main#0" expanded="false" />
+            <element signature="method#getLastOpened#0;class#Main#0" expanded="false" />
+            <element signature="method#getProfile#0;class#Main#0" expanded="false" />
+            <element signature="docComment;method#checkForUpdate#0;class#Main#0" expanded="false" />
+            <element signature="method#checkForUpdate#0;class#Main#0" expanded="false" />
+            <element signature="method#createProfileGUI#0;class#Main#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -571,78 +617,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/command/HelpCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="243" selection-end="243" vertical-scroll-proportion="0.21818182" vertical-offset="0" max-vertical-offset="825">
-          <folding>
-            <element signature="e#0#396#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="13" column="13" selection-start="243" selection-end="243" vertical-scroll-proportion="0.21818182" vertical-offset="0" max-vertical-offset="825" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/exceptions/CommandNotFoundException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="163" selection-end="163" vertical-scroll-proportion="0.18181819" vertical-offset="0" max-vertical-offset="825">
-          <folding>
-            <element signature="e#0#214#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="10" column="13" selection-start="163" selection-end="163" vertical-scroll-proportion="0.18181819" vertical-offset="0" max-vertical-offset="825" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/command/Command.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="5" selection-start="245" selection-end="245" vertical-scroll-proportion="0.25454545" vertical-offset="0" max-vertical-offset="825">
-          <folding>
-            <element signature="e#0#366#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="14" column="5" selection-start="245" selection-end="245" vertical-scroll-proportion="0.25454545" vertical-offset="0" max-vertical-offset="825" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/OSValidator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="261" selection-end="261" vertical-scroll-proportion="0.3090909" vertical-offset="0" max-vertical-offset="990">
-          <folding>
-            <element signature="e#0#956#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Profile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="62" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="855">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#355#356#0" expanded="true" />
-            <element signature="e#373#374#0" expanded="true" />
-            <element signature="e#407#408#0" expanded="true" />
-            <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#466#467#0" expanded="true" />
-            <element signature="e#491#492#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#558#559#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/HelpSection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileChooser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="59" selection-start="1351" selection-end="1351" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1185">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="32" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="116" max-vertical-offset="1155">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="17" column="13" selection-start="261" selection-end="261" vertical-scroll-proportion="0.3090909" vertical-offset="0" max-vertical-offset="990" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/exceptions/FileAlreadyExistsException.java">
@@ -654,20 +644,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/HelpSection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="94" selection-start="1378" selection-end="1378" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="1065">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="34" selection-start="2976" selection-end="2976" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="915">
+          <folding>
+            <element signature="docComment;class#ProfileViewer#0" expanded="false" />
+            <element signature="method#ProfileViewer#0;class#ProfileViewer#0" expanded="false" />
+            <element signature="method#createGUIComponents#0;class#ProfileViewer#0" expanded="false" />
+            <element signature="method#addLabels#0;class#ProfileViewer#0" expanded="false" />
+            <element signature="method#close#0;class#ProfileViewer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="112" selection-start="4843" selection-end="4843" vertical-scroll-proportion="0.7890772" vertical-offset="436" max-vertical-offset="1095">
+        <state line="165" column="40" selection-start="5121" selection-end="5121" vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="765">
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#main#0;class#Main#0" expanded="false" />
             <element signature="method#println#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#createNeededFiles#0;class#Main#0" expanded="false" />
             <element signature="method#createNeededFiles#0;class#Main#0" expanded="false" />
-            <element signature="method#openProfile#0;class#Main#0" expanded="false" />
+            <element signature="method#createProfile#0;class#Main#0" expanded="false" />
+            <element signature="method#getLastOpened#0;class#Main#0" expanded="false" />
             <element signature="method#getProfile#0;class#Main#0" expanded="false" />
             <element signature="docComment;method#checkForUpdate#0;class#Main#0" expanded="false" />
             <element signature="method#checkForUpdate#0;class#Main#0" expanded="false" />
+            <element signature="method#createProfileGUI#0;class#Main#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="81" column="54" selection-start="2480" selection-end="2480" vertical-scroll-proportion="1.6819853" vertical-offset="0" max-vertical-offset="1155">
+          <folding />
         </state>
       </provider>
     </entry>

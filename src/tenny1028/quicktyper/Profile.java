@@ -5,14 +5,14 @@
 
 package tenny1028.quicktyper;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 /**
  * Created by jasper on 1/31/14.
  */
 public class Profile {
+	File file;
 	String name;
 	float averageRate;
 	float highestRate;
@@ -35,6 +35,7 @@ public class Profile {
 	}
 
 	public Profile(File file) throws FileNotFoundException {
+		this.file = file;
 		name = file.getName();
 		Scanner scanner = new Scanner(file);
 		averageRate = scanner.nextFloat();
@@ -43,12 +44,34 @@ public class Profile {
 
 	}
 	public Profile(String filename) throws FileNotFoundException {
-		File thefile = Main.getProfile(filename);
-		name = thefile.getName();
-		Scanner scanner = new Scanner(thefile);
+		file = Main.getProfile(filename);
+		name = file.getName();
+		Scanner scanner = new Scanner(file);
 		averageRate = Float.parseFloat(scanner.nextLine());
 		highestRate = Float.parseFloat(scanner.nextLine());
 		averageAccuracy = Float.parseFloat(scanner.nextLine());
+
+	}
+
+	public void save(){
+		file.delete();
+		try {
+			file.createNewFile();
+			BufferedWriter writer = null;
+			try {
+				writer = new BufferedWriter(new FileWriter(file));
+				writer.write(averageRate+Main.newline+highestRate+Main.newline+averageAccuracy);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					writer.close();
+				} catch (Exception e) {
+				}
+			}
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 }

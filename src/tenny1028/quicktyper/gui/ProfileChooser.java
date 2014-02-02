@@ -18,7 +18,7 @@ import java.io.FileNotFoundException;
 /**
  * Created by jasper on 1/28/14.
  */
-public class ProfileChooser extends JFrame implements ActionListener{
+public class ProfileChooser extends JFrame{
 
 	final JComboBox<String> jComboBox;
 
@@ -31,13 +31,23 @@ public class ProfileChooser extends JFrame implements ActionListener{
 		jComboBox = new JComboBox<String>(allProfilesNames);
 		JLabel label = new JLabel("Choose profile to open: ");
 		JButton button1 = new JButton("Choose");
-		button1.addActionListener(this);
+		button1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Main.openProfile((String) jComboBox.getSelectedItem());
+					new ProfileViewer(new Profile((String) jComboBox.getSelectedItem()));
+					dispose();
+				} catch(FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		JButton button2 = new JButton("New Profile");
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String s = JOptionPane.showInputDialog(null, "Type name of new profile: ", "Create new profile", JOptionPane.PLAIN_MESSAGE);
-				Main.createProfile(s);
+				String s = Main.createProfileGUI();
 				jComboBox.addItem(s+".wpmprofile");
 				pack();
 				jComboBox.setSelectedItem(s+".wpmprofile");
@@ -69,22 +79,13 @@ public class ProfileChooser extends JFrame implements ActionListener{
 		add(panel1, BorderLayout.CENTER);
 		add(panel2,BorderLayout.PAGE_END);
 
+		jComboBox.setSelectedItem(Main.getLastOpened());
+
 		pack();
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setVisible(true);
 		setResizable(false);
 
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		try {
-			Profile profile = new Profile((String) jComboBox.getSelectedItem());
-			new ProfileViewer(profile);
-			dispose();
-		} catch(FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
 	}
 }
