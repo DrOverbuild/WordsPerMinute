@@ -17,6 +17,11 @@ public class Profile {
 	float averageRate;
 	float highestRate;
 	float averageAccuracy;
+	int freeTypeTime;
+
+	public int getFreeTypeTime() {
+		return freeTypeTime;
+	}
 
 	public String getName() {
 		return name;
@@ -38,18 +43,22 @@ public class Profile {
 		this.file = file;
 		name = file.getName();
 		Scanner scanner = new Scanner(file);
-		averageRate = scanner.nextFloat();
-		highestRate = scanner.nextFloat();
-		averageAccuracy = scanner.nextFloat();
+		averageRate = Float.parseFloat(scanner.nextLine());
+		highestRate = Float.parseFloat(scanner.nextLine());
+		averageAccuracy = Float.parseFloat(scanner.nextLine());
+		freeTypeTime = Integer.parseInt(scanner.nextLine());
+		System.out.println("freeTypeTime: " + freeTypeTime);
 
 	}
 	public Profile(String filename) throws FileNotFoundException {
-		file = Main.getProfile(filename);
+		file = Main.start.getProfile(filename);
 		name = file.getName();
 		Scanner scanner = new Scanner(file);
 		averageRate = Float.parseFloat(scanner.nextLine());
 		highestRate = Float.parseFloat(scanner.nextLine());
 		averageAccuracy = Float.parseFloat(scanner.nextLine());
+		freeTypeTime = Integer.parseInt(scanner.nextLine());
+		System.out.println("freeTypeTime: " + freeTypeTime);
 
 	}
 
@@ -60,7 +69,7 @@ public class Profile {
 			BufferedWriter writer = null;
 			try {
 				writer = new BufferedWriter(new FileWriter(file));
-				writer.write(averageRate+Main.newline+highestRate+Main.newline+averageAccuracy);
+				writer.write(averageRate+Main.newline+highestRate+Main.newline+averageAccuracy+Main.newline+freeTypeTime);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -73,5 +82,25 @@ public class Profile {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAverageRate(float averageRate) {
+		this.averageRate = averageRate;
+	}
+
+	public void setHighestRate(float highestRate) {
+		this.highestRate = highestRate;
+	}
+
+	public void setAverageAccuracy(float averageAccuracy) {
+		this.averageAccuracy = averageAccuracy;
+	}
+
+	public void setFreeTypeTime(int freeTypeTime) {
+		this.freeTypeTime = freeTypeTime;
 	}
 }

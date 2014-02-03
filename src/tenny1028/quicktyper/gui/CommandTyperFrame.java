@@ -6,6 +6,7 @@
 package tenny1028.quicktyper.gui;
 
 import tenny1028.quicktyper.Main;
+import tenny1028.quicktyper.Start;
 import tenny1028.quicktyper.command.Command;
 import tenny1028.quicktyper.exceptions.CommandNotFoundException;
 import tenny1028.quicktyper.command.HelpCommand;
@@ -33,7 +34,7 @@ public class CommandTyperFrame extends JFrame implements ActionListener, KeyList
 	public CommandTyperFrame(){
 
 		// Setup GUI
-		super("CommandTyperFrame " + Main.VERSION_ID);
+		super("CommandTyperFrame " + Start.VERSION_ID);
 		BorderLayout b33 = new BorderLayout(5,5);
 		setLayout(b33);
 

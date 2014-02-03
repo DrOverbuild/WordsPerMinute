@@ -5,6 +5,7 @@
 
 package tenny1028.quicktyper.gui;
 
+import tenny1028.quicktyper.Main;
 import tenny1028.quicktyper.Profile;
 
 import javax.swing.*;
@@ -22,6 +23,7 @@ public class ProfileViewer extends JFrame {
 	public ProfileViewer(Profile profile){
 
 		this.profile = profile;
+		Main.start.currentlyOpenProfile = profile;
 		createGUIComponents();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,7 +94,13 @@ public class ProfileViewer extends JFrame {
 		JButton help = new JButton("Help");
 
 		// Action Listeners
-		freeType.addActionListener(null);
+		freeType.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FreeType(profile);
+				close();
+			}
+		});
 		accuracyType.addActionListener(null);
 		profOptions.addActionListener(null);
 		switchProfile.addActionListener(new ActionListener() {

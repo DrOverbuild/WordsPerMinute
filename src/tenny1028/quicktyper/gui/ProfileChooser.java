@@ -23,7 +23,7 @@ public class ProfileChooser extends JFrame{
 	final JComboBox<String> jComboBox;
 
 	public ProfileChooser(){
-		File[] allProfiles = Main.profilesDirectory.listFiles();
+		File[] allProfiles = Main.start.profilesDirectory.listFiles();
 		String[] allProfilesNames = new String[allProfiles.length];
 		for(int i = 0; i < allProfiles.length;i++){
 			allProfilesNames[i]=allProfiles[i].getName();
@@ -35,7 +35,7 @@ public class ProfileChooser extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Main.openProfile((String) jComboBox.getSelectedItem());
+					Main.start.openProfile((String) jComboBox.getSelectedItem());
 					new ProfileViewer(new Profile((String) jComboBox.getSelectedItem()));
 					dispose();
 				} catch(FileNotFoundException e1) {
@@ -47,7 +47,7 @@ public class ProfileChooser extends JFrame{
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String s = Main.createProfileGUI();
+				String s = Main.start.createProfileGUI();
 				jComboBox.addItem(s+".wpmprofile");
 				pack();
 				jComboBox.setSelectedItem(s+".wpmprofile");
@@ -60,11 +60,12 @@ public class ProfileChooser extends JFrame{
 				int bool = JOptionPane.showConfirmDialog(null, "Are you sure?","",JOptionPane.WARNING_MESSAGE);
 				if(bool == 0){
 					String theObject = (String) jComboBox.getSelectedItem();
-					File deletionFile = Main.getProfile(theObject);
+					File deletionFile = Main.start.getProfile(theObject);
 					System.out.println(deletionFile.getAbsolutePath());
 					deletionFile.delete();
 					jComboBox.removeItem(theObject);
 					pack();
+					Main.start.currentlyOpenProfile = null;
 				}
 			}
 		});
@@ -79,7 +80,7 @@ public class ProfileChooser extends JFrame{
 		add(panel1, BorderLayout.CENTER);
 		add(panel2,BorderLayout.PAGE_END);
 
-		jComboBox.setSelectedItem(Main.getLastOpened());
+		jComboBox.setSelectedItem(Main.start.getLastOpened());
 
 		pack();
 		setLocationRelativeTo(null);

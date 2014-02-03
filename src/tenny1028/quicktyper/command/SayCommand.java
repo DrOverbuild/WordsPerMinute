@@ -19,7 +19,6 @@ public class SayCommand extends Command {
 		for(String str:args) {
 			if (str != null) printToLine += str + " ";
 		}
-		Main.println(printToLine);
 	}
 
 	public String getName(){
