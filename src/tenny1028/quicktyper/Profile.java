@@ -82,6 +82,14 @@ public class Profile {
 
 	}
 
+	public void reset(){
+		setAverageRate(0f);
+		setHighestRate(0f);
+		setAverageAccuracy(0f);
+		setFreeTypeTime(120);
+		save();
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

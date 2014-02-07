@@ -105,7 +105,13 @@ public class ProfileViewer extends JFrame {
 			}
 		});
 		accuracyType.addActionListener(null);
-		profOptions.addActionListener(null);
+		profOptions.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ProfileOptions(profile);
+				close();
+			}
+		});
 		switchProfile.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
