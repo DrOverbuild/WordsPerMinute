@@ -9,6 +9,7 @@ import tenny1028.quicktyper.Main;
 import tenny1028.quicktyper.Profile;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,8 +45,10 @@ public class ProfileViewer extends JFrame {
 	}
 
 	public void addLabels(){
-		JPanel statsLabels = new JPanel(new GridLayout(4,1,4,4));
-		JPanel stats = new JPanel(new GridLayout(4,1,4,4));
+		JPanel statsLabels = new JPanel(new GridLayout(4,1));
+		JPanel stats = new JPanel(new GridLayout(4,1));
+		statsLabels.setBorder(new EmptyBorder(5,2,5,2));
+		stats.setBorder(new EmptyBorder(5,2,5,2));
 		Font boldFont = new Font(Font.DIALOG,Font.BOLD,12);
 
 		JLabel statsLabel = new JLabel("Stats",JLabel.CENTER);

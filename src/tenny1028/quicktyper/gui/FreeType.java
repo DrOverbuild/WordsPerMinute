@@ -32,7 +32,7 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		super("Free Type");
 
 		this.profile = profile1;
-		secondsLeft = profile.getFreeTypeTime()/1000;
+		secondsLeft = profile.getFreeTypeTime();
 
 		setLayout(new BorderLayout(5,5));
 
@@ -68,7 +68,12 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 
 	public float getWordsPerMinute(){
 		int numberOfWords = area.getText().split(" ").length;
-		float minutes = profile.getFreeTypeTime()/60000;
+		float seconds = profile.getFreeTypeTime()-secondsLeft;
+		float minutes = seconds/60;
+		float wordsperminute = numberOfWords/minutes;
+		if(profile.getHighestRate()<wordsperminute){
+			profile.setHighestRate(wordsperminute);
+		}
 		return numberOfWords/minutes;
 	}
 
@@ -114,9 +119,6 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		JOptionPane.showMessageDialog(null,area.getText().split(" ").length + " words; " + wordsperminute + "wpm");
 		dispose();
 		profile.setAverageRate(Start.averageOf(new float[]{profile.getAverageRate(), wordsperminute}));
-		if(profile.getHighestRate()<wordsperminute){
-			profile.setHighestRate(wordsperminute);
-		}
 		new ProfileViewer(profile);
 	}
 }

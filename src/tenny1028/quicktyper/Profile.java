@@ -47,7 +47,6 @@ public class Profile {
 		highestRate = Float.parseFloat(scanner.nextLine());
 		averageAccuracy = Float.parseFloat(scanner.nextLine());
 		freeTypeTime = Integer.parseInt(scanner.nextLine());
-		System.out.println("freeTypeTime: " + freeTypeTime);
 
 	}
 	public Profile(String filename) throws FileNotFoundException {
@@ -58,7 +57,6 @@ public class Profile {
 		highestRate = Float.parseFloat(scanner.nextLine());
 		averageAccuracy = Float.parseFloat(scanner.nextLine());
 		freeTypeTime = Integer.parseInt(scanner.nextLine());
-		System.out.println("freeTypeTime: " + freeTypeTime);
 
 	}
 

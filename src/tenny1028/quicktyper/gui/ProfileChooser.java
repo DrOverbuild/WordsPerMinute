@@ -61,7 +61,6 @@ public class ProfileChooser extends JFrame{
 				if(bool == 0){
 					String theObject = (String) jComboBox.getSelectedItem();
 					File deletionFile = Main.start.getProfile(theObject);
-					System.out.println(deletionFile.getAbsolutePath());
 					deletionFile.delete();
 					jComboBox.removeItem(theObject);
 					pack();

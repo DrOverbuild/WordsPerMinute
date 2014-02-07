@@ -139,7 +139,7 @@ public class Start {
 			BufferedWriter writer = null;
 			try {
 				writer = new BufferedWriter(new FileWriter(userProfile));
-				writer.write("0.0"+Main.newline+"0.0"+Main.newline+"0.0"+Main.newline+"120000");
+				writer.write("0.0"+Main.newline+"0.0"+Main.newline+"0.0"+Main.newline+"120");
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
