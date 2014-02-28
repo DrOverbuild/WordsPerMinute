@@ -28,6 +28,7 @@ public class Start {
 	public File currentProfile;
 	public File previouslyOpenedProfile;
 	public File lastLoginFile;          //<libraryFolderDirectory>/lastlogin.txt
+	public File savesFolder;            //<libraryFolderDirectory>/saves/
 
 	public String libraryFolder;
 
@@ -80,6 +81,7 @@ public class Start {
 	 * time.
 	 */
 	public boolean createNeededFiles(){
+		// Get library folder
 		String userHome = System.getProperty("user.home");
 		String os = OSValidator.findOS();
 		String profilesDirectoryFolder;
@@ -99,6 +101,7 @@ public class Start {
 		libraryFolderDirectory = new File(libraryFolder);
 		profilesDirectory = new File(profilesDirectoryFolder);
 
+		// Create Profiles directory if needed and get delete files that aren't profile files.
 		if(!profilesDirectory.exists()){
 			try{
 				profilesDirectory.mkdirs();
@@ -115,6 +118,12 @@ public class Start {
 			}
 		}
 
+		// Get saves folder
+		String savesFolderFilePath = libraryFolder + "saves" + Main.fileSeparator;
+		savesFolder = new File(savesFolderFilePath);
+		savesFolder.mkdirs();
+
+		// Get lastlogin file
 		String lastLogin = libraryFolder + "lastlogin.txt";
 		lastLoginFile = new File(lastLogin);
 		if(!lastLoginFile.exists()){
@@ -126,10 +135,15 @@ public class Start {
 		return hasBeenOpened;
 	}
 	public void createProfile(String profileName) throws FileAlreadyExistsException {
+		boolean endsWithFileExtension = false;
 		String userProfileFilePath;
 		if(!profileName.endsWith(".wpmprofile")) userProfileFilePath = profilesDirectory.getPath() + System.getProperty("file.separator")+profileName+".wpmprofile";
-		else userProfileFilePath = profilesDirectory.getPath() + System.getProperty("file.separator")+profileName;
+		else {
+			endsWithFileExtension = true;
+			userProfileFilePath = profilesDirectory.getPath() + System.getProperty("file.separator")+profileName;
+		}
 		File userProfile = new File(userProfileFilePath);
+
 		if(!userProfile.exists()){
 			try{
 				userProfile.createNewFile();
@@ -148,6 +162,13 @@ public class Start {
 				} catch (Exception e) {
 				}
 			}
+
+			String withOutFileExtension = userProfile.getName().substring(0,userProfile.getName().length()-11);
+			File profileSavesFolder = new File(savesFolder.getAbsolutePath()+Main.fileSeparator+withOutFileExtension);
+			profileSavesFolder.mkdir();
+
+
+
 		}else{
 			throw new FileAlreadyExistsException(userProfileFilePath + " Already exists!", userProfile.getName());
 		}
@@ -160,6 +181,11 @@ public class Start {
 			writer.write(filepath);
 			writer.flush();
 			previouslyOpenedProfile = new File(filepath);
+
+			// Create saves folder
+			String withOutFileExtension = previouslyOpenedProfile.getName().substring(0,previouslyOpenedProfile.getName().length()-11);
+			File profileSavesFolder = new File(savesFolder.getAbsolutePath()+Main.fileSeparator+withOutFileExtension);
+			profileSavesFolder.mkdir();
 			writer.close();
 		} catch(IOException e) {
 		}

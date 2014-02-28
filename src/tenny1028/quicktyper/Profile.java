@@ -13,11 +13,26 @@ import java.util.Scanner;
  */
 public class Profile {
 	File file;
+
+
+
+	/**
+	 * Holds the free typing text that the user typed and saved.
+	 */
+	File saves;
 	String name;
 	float averageRate;
 	float highestRate;
 	float averageAccuracy;
 	int freeTypeTime;
+
+	public File getSaves() {
+		return saves;
+	}
+
+	public File getFile() {
+		return file;
+	}
 
 	public int getFreeTypeTime() {
 		return freeTypeTime;
@@ -41,6 +56,7 @@ public class Profile {
 
 	public Profile(File file) throws FileNotFoundException {
 		this.file = file;
+		this.saves = new File(Main.start.savesFolder.getAbsolutePath()+Main.fileSeparator+file.getName().substring(0,file.getName().length()-11));
 		name = file.getName();
 		Scanner scanner = new Scanner(file);
 		averageRate = Float.parseFloat(scanner.nextLine());
@@ -51,6 +67,7 @@ public class Profile {
 	}
 	public Profile(String filename) throws FileNotFoundException {
 		file = Main.start.getProfile(filename);
+		this.saves = new File(Main.start.savesFolder.getAbsolutePath()+Main.fileSeparator+file.getName().substring(0,file.getName().length()-11));
 		name = file.getName();
 		Scanner scanner = new Scanner(file);
 		averageRate = Float.parseFloat(scanner.nextLine());
@@ -108,5 +125,13 @@ public class Profile {
 
 	public void setFreeTypeTime(int freeTypeTime) {
 		this.freeTypeTime = freeTypeTime;
+	}
+
+	public void setSaves(File saves) {
+		this.saves = saves;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
 	}
 }

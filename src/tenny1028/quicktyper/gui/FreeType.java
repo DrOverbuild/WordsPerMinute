@@ -5,6 +5,7 @@
 
 package tenny1028.quicktyper.gui;
 
+import tenny1028.quicktyper.Main;
 import tenny1028.quicktyper.Profile;
 import tenny1028.quicktyper.Start;
 
@@ -15,6 +16,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -70,10 +77,7 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		int numberOfWords = area.getText().split(" ").length;
 		float seconds = profile.getFreeTypeTime()-secondsLeft;
 		float minutes = seconds/60;
-		float wordsperminute = numberOfWords/minutes;
-		if(profile.getHighestRate()<wordsperminute){
-			profile.setHighestRate(wordsperminute);
-		}
+
 		return numberOfWords/minutes;
 	}
 
@@ -115,8 +119,34 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		messages.setText("0 seconds left");
 		timerRunning = false;
 		float wordsperminute = getWordsPerMinute();
+		if((profile.getHighestRate()<wordsperminute)&&!Float.isInfinite(wordsperminute)){
+			profile.setHighestRate(wordsperminute);
+		}
 		JOptionPane.showMessageDialog(null,"Timer done.");
 		JOptionPane.showMessageDialog(null,area.getText().split(" ").length + " words; " + wordsperminute + "wpm");
+		int userWantsToSave = JOptionPane.showConfirmDialog(null,"Do you want to save the text you wrote?", "", JOptionPane.YES_NO_OPTION);
+		if (userWantsToSave == 0){
+			//BufferedWriter writer = null;
+			//try {
+				String filename = new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " at " + new SimpleDateFormat("hh:mm:ss a").format(new Date()) + ".txt";
+
+				/*
+				File save = new File(profile.getSaves().getAbsolutePath() + Main.fileSeparator + ;
+				writer = new BufferedWriter(new FileWriter(lastLoginFile.getAbsolutePath()));
+				writer.write(filepath);
+				writer.flush();
+				previouslyOpenedProfile = new File(filepath);
+
+				// Create saves folder
+				String withOutFileExtension = previouslyOpenedProfile.getName().substring(0,previouslyOpenedProfile.getName().length()-11);
+				File profileSavesFolder = new File(savesFolder.getAbsolutePath()+ Main.fileSeparator+withOutFileExtension);
+				profileSavesFolder.mkdir();
+				writer.close();
+				*/
+			//} catch(IOException e) {
+			//}
+			System.out.println(filename);
+		}
 		dispose();
 		profile.setAverageRate(Start.averageOf(new float[]{profile.getAverageRate(), wordsperminute}));
 		new ProfileViewer(profile);
