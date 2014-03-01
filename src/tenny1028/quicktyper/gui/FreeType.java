@@ -81,6 +81,25 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		return numberOfWords/minutes;
 	}
 
+	private void saveText(){
+		BufferedWriter writer = null;
+		try {
+			String filename = new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " at " + new SimpleDateFormat("hh:mm:ss a").format(new Date()) + ".txt";
+			File save = new File(profile.getSaves().getAbsolutePath() + Main.fileSeparator + filename);
+
+			if(save.createNewFile()){
+				writer = new BufferedWriter(new FileWriter(save));
+				writer.write(area.getText());
+				writer.flush();
+				writer.close();
+			}else{
+				JOptionPane.showMessageDialog(null, "Cannot save file.", "Error", JOptionPane.ERROR);
+			}
+		} catch(IOException e) {
+			JOptionPane.showMessageDialog(null, "Cannot save file.", "Error", JOptionPane.ERROR);
+		}
+	}
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if(!timerRunning){
@@ -126,26 +145,7 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		JOptionPane.showMessageDialog(null,area.getText().split(" ").length + " words; " + wordsperminute + "wpm");
 		int userWantsToSave = JOptionPane.showConfirmDialog(null,"Do you want to save the text you wrote?", "", JOptionPane.YES_NO_OPTION);
 		if (userWantsToSave == 0){
-			//BufferedWriter writer = null;
-			//try {
-				String filename = new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " at " + new SimpleDateFormat("hh:mm:ss a").format(new Date()) + ".txt";
-
-				/*
-				File save = new File(profile.getSaves().getAbsolutePath() + Main.fileSeparator + ;
-				writer = new BufferedWriter(new FileWriter(lastLoginFile.getAbsolutePath()));
-				writer.write(filepath);
-				writer.flush();
-				previouslyOpenedProfile = new File(filepath);
-
-				// Create saves folder
-				String withOutFileExtension = previouslyOpenedProfile.getName().substring(0,previouslyOpenedProfile.getName().length()-11);
-				File profileSavesFolder = new File(savesFolder.getAbsolutePath()+ Main.fileSeparator+withOutFileExtension);
-				profileSavesFolder.mkdir();
-				writer.close();
-				*/
-			//} catch(IOException e) {
-			//}
-			System.out.println(filename);
+			saveText();
 		}
 		dispose();
 		profile.setAverageRate(Start.averageOf(new float[]{profile.getAverageRate(), wordsperminute}));

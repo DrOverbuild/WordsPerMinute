@@ -105,7 +105,7 @@
       <file leaf-file-name="FreeType.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/FreeType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="61" selection-start="3388" selection-end="3388" vertical-scroll-proportion="0.8398268" vertical-offset="1217" max-vertical-offset="2055">
+            <state line="147" column="23" selection-start="4006" selection-end="4006" vertical-scroll-proportion="0.76363635" vertical-offset="1230" max-vertical-offset="2055">
               <folding />
             </state>
           </provider>
@@ -478,7 +478,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13194445" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42555687" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42555687" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298611" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -843,7 +843,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/FreeType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="61" selection-start="3388" selection-end="3388" vertical-scroll-proportion="0.8398268" vertical-offset="1217" max-vertical-offset="2055">
+        <state line="147" column="23" selection-start="4006" selection-end="4006" vertical-scroll-proportion="0.76363635" vertical-offset="1230" max-vertical-offset="2055">
           <folding />
         </state>
       </provider>
