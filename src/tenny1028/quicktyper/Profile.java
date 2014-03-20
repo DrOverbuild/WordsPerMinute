@@ -109,6 +109,15 @@ public class Profile {
 
 	public void setName(String name) {
 		this.name = name;
+		if (name.endsWith(".wpmprofile")){
+			file.renameTo(new File (file.getParentFile().getAbsolutePath() + Main.fileSeparator + name));
+			saves.renameTo(new File(saves.getParentFile().getAbsolutePath() + Main.fileSeparator + name.substring(0,name.length()-11)));
+		} else{
+			file.renameTo(new File (file.getParentFile().getAbsolutePath() + Main.fileSeparator + name + ".wpmprofile"));
+			saves.renameTo(new File(saves.getParentFile().getAbsolutePath() + Main.fileSeparator + name));
+		}
+
+
 	}
 
 	public void setAverageRate(float averageRate) {

@@ -13,6 +13,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Created by jasper on 2/7/14.
@@ -27,21 +29,24 @@ public class ProfileOptions extends JFrame {
 		super("Profile Options");
 		profile = prof;
 
-		setLayout(new GridLayout(2,1));
+		setLayout(new GridLayout(3,1));
 
-		JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.LEFT,1,5));
-		panel1.add(new JLabel("Free Type Time in seconds:"));
+		JPanel renamePanel = new JPanel(new BorderLayout(5,5));
+		renamePanel.add(new JLabel("Name of profile: "),BorderLayout.WEST);
+		final JTextField nameField = new JTextField(profile.getName(),20);
+		renamePanel.add(nameField,BorderLayout.CENTER);
+		add(renamePanel);
+
+		JPanel panel1 = new JPanel(new BorderLayout(5,5));
+		panel1.add(new JLabel("Free Type Time in seconds:"),BorderLayout.WEST);
 		freeTypeTimeSpinner = new JSpinner();
-		freeTypeTimeSpinner.setValue(000000);
-		freeTypeTimeSpinner.setMinimumSize(freeTypeTimeSpinner.getSize()); // freeTypeTimeSpinner cannot be less than six digits long.
-		freeTypeTimeSpinner.setValue(profile.getFreeTypeTime());
 		freeTypeTimeSpinner.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				profile.setFreeTypeTime((int) freeTypeTimeSpinner.getValue());
 			}
 		});
-		panel1.add(freeTypeTimeSpinner);
+		panel1.add(freeTypeTimeSpinner, BorderLayout.CENTER);
 		add(panel1);
 
 		JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -59,6 +64,7 @@ public class ProfileOptions extends JFrame {
 		closeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				profile.setName(nameField.getText());
 				profile.save();
 				new ProfileViewer(profile);
 				dispose();
@@ -66,6 +72,8 @@ public class ProfileOptions extends JFrame {
 		});
 		panel2.add(closeButton);
 		add(panel2);
+
+		freeTypeTimeSpinner.setValue(profile.getFreeTypeTime());
 
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		pack();

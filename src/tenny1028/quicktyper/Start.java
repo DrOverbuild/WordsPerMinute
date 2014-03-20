@@ -68,6 +68,7 @@ public class Start {
 		if(!hasBeenOpened){
 			new HelpSection();
 			createProfileGUI();
+			new ProfileChooser();
 
 		}else{
 			new ProfileChooser();
@@ -94,7 +95,7 @@ public class Start {
 			profilesDirectoryFolder = libraryFolder + "profiles\\";
 		}
 		else {
-			libraryFolder = userHome + "/.wordsperminute/";
+			libraryFolder = userHome + "/wordsperminute/";
 			profilesDirectoryFolder = libraryFolder + "profiles/";
 		}
 
@@ -137,7 +138,9 @@ public class Start {
 	public void createProfile(String profileName) throws FileAlreadyExistsException {
 		boolean endsWithFileExtension = false;
 		String userProfileFilePath;
-		if(!profileName.endsWith(".wpmprofile")) userProfileFilePath = profilesDirectory.getPath() + System.getProperty("file.separator")+profileName+".wpmprofile";
+		if(!profileName.endsWith(".wpmprofile")) {
+			userProfileFilePath = profilesDirectory.getPath() + System.getProperty("file.separator")+profileName+".wpmprofile";
+		}
 		else {
 			endsWithFileExtension = true;
 			userProfileFilePath = profilesDirectory.getPath() + System.getProperty("file.separator")+profileName;
@@ -151,14 +154,18 @@ public class Start {
 			}
 			// Write default numbers for statistics:
 			BufferedWriter writer = null;
+			BufferedWriter writer2 = null;
 			try {
 				writer = new BufferedWriter(new FileWriter(userProfile));
 				writer.write("0.0"+Main.newline+"0.0"+Main.newline+"0.0"+Main.newline+"120");
+				writer2 = new BufferedWriter(new FileWriter(lastLoginFile));
+				writer2.write(userProfile.getName());
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				try {
 					writer.close();
+					writer2.close();
 				} catch (Exception e) {
 				}
 			}
@@ -232,6 +239,7 @@ public class Start {
 		String s = JOptionPane.showInputDialog(null, "Type name of new profile: ", "Create new profile", JOptionPane.PLAIN_MESSAGE);
 		try{
 			createProfile(s);
+
 			return s;
 		}catch(FileAlreadyExistsException e){
 			JOptionPane.showMessageDialog(null, e.getNameOfFile()+" already exists.");
