@@ -7,21 +7,20 @@ package tenny1028.quicktyper.gui;
 
 import tenny1028.quicktyper.Main;
 import tenny1028.quicktyper.Profile;
+import tenny1028.quicktyper.Start;
+import tenny1028.quicktyper.gui.caret.BlockStyleCaret;
+import tenny1028.quicktyper.timer.StopwatchTimer;
+import tenny1028.quicktyper.timer.StopwatchTimerAction;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeListener;
-import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -31,36 +30,37 @@ public class AccuracyType extends JFrame {
 
 	Profile currentProfile;
 
-	public ArrayList<Character> everyChar;
-	public ArrayList<JLabel> everyCharLabel;
 
 	/**
 	 * Holds the number of errors user made while typing.
 	 */
 	public int errors;
 
+	/**
+	 * EVERY TIME A TEXT IS ADDED TO src/accuracytypetexts/, THIS INT SHOULD BE INCREMENTED! THIS INT STORES THE NUMBER
+	 * OF FILES SO THE RANDOM NUMBER GENERATOR CAN SELECT A RANDOM FILE IN THE RESOURCE STREAM.
+	 */
+	public static final int numberOfTexts = 2;
+
+	public JLabel errorsL = new JLabel("Errors: 0");
+	public JLabel elapsedTime = new JLabel("Time: 0s");
+	public JTextArea area = new JTextArea(20,40);
+
+	StopwatchTimer timer;
+	boolean timerIsRunning;
+
 	public AccuracyType(Profile currentProfile){
 		super("Accuracy Type");
 
 		this.currentProfile = currentProfile;
 
-		// Read from the file, then put each character in the ArrayList
-		everyChar = new ArrayList<>();
-		InputStream sample = Main.class.getResourceAsStream("/sample.txt");
-		Scanner sampleScanner = new Scanner(sample);
-		sampleScanner.useDelimiter("");
-		while(sampleScanner.hasNext()){
-			char idk = sampleScanner.next().charAt(0);
-			everyChar.add(new Character(idk));
-		}
+		Random r = new Random();
+		int rr = r.nextInt(numberOfTexts);
+		String areaText = Main.getTXTFileInJar("/accuracytypetexts/text"+rr+".txt");
 
-		everyCharLabel = new ArrayList<>();
-		for(Character c : everyChar){
-			everyCharLabel.add(new JLabel(c.toString()));
-		}
+		area.setText(areaText);
 
 		setLayout(new BorderLayout());
-		final JTextArea area = new JTextArea(20,40);
 		area.setLineWrap(true);
 		area.setWrapStyleWord(true);
 		JScrollPane scrollPane = new JScrollPane(area);
@@ -69,22 +69,27 @@ public class AccuracyType extends JFrame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				e.consume();
+				if(e.getKeyChar() == KeyEvent.VK_ESCAPE){
+					dispose();
+					return;
+				}
 				char c = e.getKeyChar();
 				try{
 					if(c == area.getText().charAt(area.getCaretPosition())){
 						area.setCaretPosition(area.getCaretPosition()+1);
-						area.select(0,area.getCaretPosition());
+						//area.select(0,area.getCaretPosition());
 					}else{
 						errors++;
+						errorsL.setText("Errors: " + errors);
+						errorsL.setForeground(Color.RED);
+						//area.setCaretPosition(area.getCaretPosition()+1);
 					}
-				}catch(StringIndexOutOfBoundsException e2){
-					JOptionPane.showMessageDialog(null,"Errors: " + errors);
-					String percentage = formatToPercent(getAccuracyPercentage(errors, area.getText().length()));
-					JOptionPane.showMessageDialog(null, "Accuracy: " + percentage);
-					errors = 0;
-					area.setCaretPosition(0);
-					dispose();
-					new ProfileViewer(getCurrentProfile());
+				}catch(StringIndexOutOfBoundsException e2){ // This exception is thrown when user gets done typing.
+					close();
+				}
+				if(!timerIsRunning){
+					timer.start();
+					timerIsRunning = true;
 				}
 
 			}
@@ -100,17 +105,30 @@ public class AccuracyType extends JFrame {
 			}
 		});
 
-		String buffer1 = "";
-		for(Character c : everyChar){
-			buffer1 += (c.toString());
-		}
-		area.setText(buffer1);
-
 		add(scrollPane, BorderLayout.CENTER);
 
+		area.setCaret(new BlockStyleCaret());
+		area.getCaret().setBlinkRate(0);
+		area.setFont(new Font(Font.MONOSPACED,Font.PLAIN,14));
 		area.setCaretPosition(0);
 
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		JPanel panel = new JPanel(new BorderLayout());
+		errorsL.setFont(new Font(Font.DIALOG, Font.BOLD, 16));
+		elapsedTime.setFont(new Font(Font.DIALOG, Font.PLAIN, 16));
+		panel.add(errorsL, BorderLayout.WEST);
+		panel.add(elapsedTime,BorderLayout.EAST);
+		panel.setBorder(new EmptyBorder(1,5,1,5));
+		add(panel, BorderLayout.NORTH);
+
+		timer = new StopwatchTimer(new StopwatchTimerAction() {
+			@Override
+			public void forEverySecond(StopwatchTimer timer) {
+				int seconds = timer.getElapsedTime();
+				elapsedTime.setText("Time: "+seconds+"s");
+			}
+		});
+
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
 		pack();
@@ -118,7 +136,7 @@ public class AccuracyType extends JFrame {
 
 	}
 
-	public float getAccuracyPercentage(int errors, int total){
+	public float getAccuracyFloat(int errors, int total){
 		float correct = (float) total - (float) errors;
 		return correct / (float) total;
 	}
@@ -127,11 +145,45 @@ public class AccuracyType extends JFrame {
 		return currentProfile;
 	}
 
-	public String formatToPercent(float accuracy){
+	public float formatToPercent(float accuracy){
 		accuracy *= 100;
+		return Start.roundTo(accuracy,2);
+	}
+	/**
+	 * Ends the typing and returns to profile viewer. <em>DOES NOT TERMINATE USER.</em> Seriously, why would it terminate
+	 * user? If it did then it would be illegal.
+	 */
+	public void close(){
+		float wpms = getWordsPerMinute();
+		float accuracy = formatToPercent(getAccuracyFloat(errors, area.getText().length()));
 
-		BigDecimal bd = new BigDecimal(Float.toString(accuracy));
-		bd = bd.setScale(1, BigDecimal.ROUND_HALF_UP);
-		return "" + bd.floatValue() + "%";
+		if((currentProfile.getHighestRate()<wpms)&&!Float.isInfinite(wpms)){
+			currentProfile.setHighestRate(wpms);
+		}
+		currentProfile.registerAccuracy(accuracy);
+		currentProfile.setAverageRate(Start.averageOf(new float[]{currentProfile.getAverageRate(), wpms}));
+
+		timer.reset();
+		timerIsRunning = true;
+		JOptionPane.showMessageDialog(null, "Accuracy: " + accuracy + "%, Typing Rate: " + wpms + "wpm");
+		errors = 0;
+		dispose();
+	}
+
+	/**
+	 * Disposes and closes the window, but also returns to the profile viewer.
+	 */
+	@Override
+	public void dispose(){
+		super.dispose();
+		new ProfileViewer(currentProfile);
+	}
+
+	public float getWordsPerMinute(){
+		int words = area.getText().split(" ").length;
+		int seconds = timer.getElapsedTime();
+		float minutes = seconds / 60.0f; // If 60 was an int, the result would be zero if seconds was less than 60, so
+										 // 60 will be of type float.
+		return Start.roundTo(words/minutes,2);
 	}
 }

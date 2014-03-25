@@ -68,7 +68,7 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		timer.setRepeats(true);
 
 		pack();
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
@@ -77,21 +77,21 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		int numberOfWords = area.getText().split(" ").length;
 		float seconds = profile.getFreeTypeTime()-secondsLeft;
 		float minutes = seconds/60;
-
-		return numberOfWords/minutes;
+		return Start.roundTo(numberOfWords/minutes,2);
 	}
 
 	private void saveText(){
 		BufferedWriter writer = null;
 		try {
-			String filename = new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " at " + new SimpleDateFormat("hh:mm:ss a").format(new Date()) + ".txt";
-			File save = new File(profile.getSaves().getAbsolutePath() + Main.fileSeparator + filename);
+			String filename = "Free type session " + new SimpleDateFormat("MM-dd-yyyy").format(new Date()) + " at " + new SimpleDateFormat("hh.mm.ss a").format(new Date()) + ".txt";
+			File save = new File(System.getProperty("user.home")+Main.fileSeparator+"Desktop"+Main.fileSeparator+filename);
 
 			if(save.createNewFile()){
 				writer = new BufferedWriter(new FileWriter(save));
 				writer.write(area.getText());
 				writer.flush();
 				writer.close();
+				JOptionPane.showMessageDialog(null, "Successfully saved to you desktop.");
 			}else{
 				JOptionPane.showMessageDialog(null, "Cannot save file.", "Error", JOptionPane.ERROR);
 			}
@@ -149,6 +149,14 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		}
 		dispose();
 		profile.setAverageRate(Start.averageOf(new float[]{profile.getAverageRate(), wordsperminute}));
+		new ProfileViewer(profile);
+	}
+
+	@Override
+	public void dispose(){
+		timer.stop();
+		timerRunning = false;
+		super.dispose();
 		new ProfileViewer(profile);
 	}
 }

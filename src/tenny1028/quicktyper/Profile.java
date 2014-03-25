@@ -56,6 +56,7 @@ public class Profile {
 
 	public Profile(File file) throws FileNotFoundException {
 		this.file = file;
+		//this.saves = new File(Main.start.homeFolder.getAbsolutePath() + Main.fileSeparator + "Desktop");
 		this.saves = new File(Main.start.savesFolder.getAbsolutePath()+Main.fileSeparator+file.getName().substring(0,file.getName().length()-11));
 		name = file.getName();
 		Scanner scanner = new Scanner(file);
@@ -67,6 +68,7 @@ public class Profile {
 	}
 	public Profile(String filename) throws FileNotFoundException {
 		file = Main.start.getProfile(filename);
+		//this.saves = new File(Main.start.homeFolder.getAbsolutePath() + "/Desktop");
 		this.saves = new File(Main.start.savesFolder.getAbsolutePath()+Main.fileSeparator+file.getName().substring(0,file.getName().length()-11));
 		name = file.getName();
 		Scanner scanner = new Scanner(file);
@@ -99,6 +101,14 @@ public class Profile {
 
 	}
 
+	public void registerAccuracy(float accuracy){
+		if(getAverageAccuracy()==0.0f){
+			setAverageAccuracy(accuracy);
+		}else{
+			setAverageAccuracy(Start.roundTo(Start.averageOf(new float[]{accuracy, getAverageAccuracy()}), 2));
+		}
+	}
+
 	public void reset(){
 		setAverageRate(0f);
 		setHighestRate(0f);
@@ -108,21 +118,32 @@ public class Profile {
 	}
 
 	public void setName(String name) {
-		this.name = name;
-		if (name.endsWith(".wpmprofile")){
-			file.renameTo(new File (file.getParentFile().getAbsolutePath() + Main.fileSeparator + name));
-			saves.renameTo(new File(saves.getParentFile().getAbsolutePath() + Main.fileSeparator + name.substring(0,name.length()-11)));
-		} else{
-			file.renameTo(new File (file.getParentFile().getAbsolutePath() + Main.fileSeparator + name + ".wpmprofile"));
-			saves.renameTo(new File(saves.getParentFile().getAbsolutePath() + Main.fileSeparator + name));
+		try{
+			String fileName = "";
+			String savesName = "";
+			if (name.endsWith(".wpmprofile")){
+				this.name = name;
+				fileName = file.getParentFile().getAbsolutePath() + Main.fileSeparator + name;
+				savesName = saves.getParentFile().getAbsolutePath() + Main.fileSeparator + name.substring(0,name.length()-11);
+			} else{
+				this.name = name + ".wpmprofile";
+				fileName = file.getParentFile().getAbsolutePath() + Main.fileSeparator + name + ".wpmprofile";
+				savesName = saves.getParentFile().getAbsolutePath() + Main.fileSeparator + name;
+			}
+			file.delete();
+			saves.delete();
+			file = new File(fileName);
+			saves = new File(savesName);
+			System.out.println("File creation: " + file.createNewFile());
+			System.out.println("File creation: " + saves.mkdir());
+		}catch(IOException e){
+			System.out.println("IOException");
 		}
 
 
 	}
 
-	public void setAverageRate(float averageRate) {
-		this.averageRate = averageRate;
-	}
+	public void setAverageRate(float averageRate) { this.averageRate = Start.roundTo(averageRate,2); }
 
 	public void setHighestRate(float highestRate) {
 		this.highestRate = highestRate;

@@ -23,6 +23,7 @@ public class ProfileOptions extends JFrame {
 
 	Profile profile;
 
+	JTextField nameField;
 	JSpinner freeTypeTimeSpinner;
 
 	public ProfileOptions(Profile prof){
@@ -33,9 +34,18 @@ public class ProfileOptions extends JFrame {
 
 		JPanel renamePanel = new JPanel(new BorderLayout(5,5));
 		renamePanel.add(new JLabel("Name of profile: "),BorderLayout.WEST);
-		final JTextField nameField = new JTextField(profile.getName(),20);
+
+		nameField = new JTextField(profile.getName(),20);
 		renamePanel.add(nameField,BorderLayout.CENTER);
 		add(renamePanel);
+		nameField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("ActionPerformed");
+				profile.setName(nameField.getText());
+				nameField.setText(profile.getName());
+			}
+		});
 
 		JPanel panel1 = new JPanel(new BorderLayout(5,5));
 		panel1.add(new JLabel("Free Type Time in seconds:"),BorderLayout.WEST);
@@ -50,7 +60,7 @@ public class ProfileOptions extends JFrame {
 		add(panel1);
 
 		JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JButton resetStatsButton = new JButton("Reset Profile");
+		JButton resetStatsButton = new JButton("Reset Stats and Options");
 		resetStatsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -64,9 +74,6 @@ public class ProfileOptions extends JFrame {
 		closeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				profile.setName(nameField.getText());
-				profile.save();
-				new ProfileViewer(profile);
 				dispose();
 			}
 		});
@@ -75,11 +82,19 @@ public class ProfileOptions extends JFrame {
 
 		freeTypeTimeSpinner.setValue(profile.getFreeTypeTime());
 
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		pack();
 		setMinimumSize(getSize());
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+
+	@Override
+	public void dispose(){
+		profile.setName(nameField.getText());
+		profile.save();
+		new ProfileViewer(profile);
+		super.dispose();
 	}
 
 }

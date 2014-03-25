@@ -7,11 +7,12 @@ package tenny1028.quicktyper;
 
 import tenny1028.quicktyper.exceptions.FileAlreadyExistsException;
 import tenny1028.quicktyper.gui.CommandTyperFrame;
-import tenny1028.quicktyper.gui.HelpSection;
+import tenny1028.quicktyper.gui.helpsection.HelpSection;
 import tenny1028.quicktyper.gui.ProfileChooser;
 
 import javax.swing.*;
 import java.io.*;
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -23,6 +24,7 @@ import java.util.Scanner;
 public class Start {
 	public CommandTyperFrame typer;
 
+	public File homeFolder = new File(System.getProperty("user.home"));
 	public File libraryFolderDirectory; //~/Library/Application Support/wordsperminute/ on Mac, ~\Application Data\wordsperminute\ on Windows
 	public File profilesDirectory;      //<libraryFolderDirectory>/profiles/
 	public File currentProfile;
@@ -66,7 +68,7 @@ public class Start {
 		}));
 
 		if(!hasBeenOpened){
-			new HelpSection();
+			HelpSection.firstTimeLaunching();
 			createProfileGUI();
 			new ProfileChooser();
 
@@ -254,5 +256,15 @@ public class Start {
 			total += floats[i];
 		}
 		return total/floats.length;
+	}
+
+	public static float roundTo(float f,int decimalPlaces){
+		try{
+			BigDecimal bd = new BigDecimal(f);
+			bd = bd.setScale(decimalPlaces, BigDecimal.ROUND_HALF_UP);
+			return bd.floatValue();
+		}catch(NumberFormatException e){
+			return 0;
+		}
 	}
 }

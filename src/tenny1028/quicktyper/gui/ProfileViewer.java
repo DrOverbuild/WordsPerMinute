@@ -7,6 +7,7 @@ package tenny1028.quicktyper.gui;
 
 import tenny1028.quicktyper.Main;
 import tenny1028.quicktyper.Profile;
+import tenny1028.quicktyper.gui.helpsection.HelpSection;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -128,7 +129,7 @@ public class ProfileViewer extends JFrame {
 		help.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new HelpSection();
+				new HelpSection(profile);
 			}
 		});
 

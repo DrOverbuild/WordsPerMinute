@@ -1,0 +1,5 @@
+Accuracy Type focuses on accuracy more than speed. Once you click Accuracy Type on the statistic viewer, you will be presented with a random text file. You must type as accurately as you can. Just type the highlighted letter, and if the highlight box is a semi-circle pointing right, press return/enter. Also press return/enter (Or any key) after you type the last character to stop the timer and end the exercise.
+
+When you make an error, by typing the wrong character, your errors will go higher. If you keep typing, you will continue to make errors until you finally type the highlighted character.
+
+It may be a good idea to resize the window before you start to your preferred size. It is recommended you resize it so you can see everything you must type. This way, no scrolling is done during the exercise.

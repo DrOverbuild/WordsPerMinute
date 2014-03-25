@@ -1,0 +1,5 @@
+Free Type is a typing exercise that focuses only on speed and fun. It's more of a writing exercise, and the point of it is to just type whatever you can. But you will be given a certain number of seconds to type, so you must also type as fast as you can. The catch is you have to always keep your fingers typing. No delete button, just type. You will make errors, but don't just type noise (tksyoe pxifwl fn), try to type intelligible words.
+
+When the certain number of seconds has run out, you will be shown the average rate you typed at, which will be averaged again into your overall average rate. You will also be asked whether or not you would like to save the text you wrote in that session. If you click yes, the file will be saved in your Desktop.
+
+The duration of the countdown timer can be configured in your profile settings, labeled "Free Type Time."
