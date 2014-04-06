@@ -161,7 +161,7 @@ public class AccuracyType extends JFrame {
 			currentProfile.setHighestRate(wpms);
 		}
 		currentProfile.registerAccuracy(accuracy);
-		currentProfile.setAverageRate(Start.averageOf(new float[]{currentProfile.getAverageRate(), wpms}));
+		currentProfile.registerRate(wpms);
 
 		timer.reset();
 		timerIsRunning = true;

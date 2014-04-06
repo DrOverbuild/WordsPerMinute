@@ -102,11 +102,11 @@ public class Profile {
 	}
 
 	public void registerAccuracy(float accuracy){
-		if(getAverageAccuracy()==0.0f){
-			setAverageAccuracy(accuracy);
-		}else{
-			setAverageAccuracy(Start.roundTo(Start.averageOf(new float[]{accuracy, getAverageAccuracy()}), 2));
-		}
+		setAverageAccuracy((getAverageAccuracy()==0.0f)?accuracy:Start.roundTo(Start.averageOf(new float[]{accuracy, getAverageAccuracy()}), 2));
+	}
+
+	public void registerRate(float rate){
+		setAverageRate((getAverageRate()==0.0f)?rate:Start.roundTo(Start.averageOf(new float[]{rate, getAverageAccuracy()}), 2));
 	}
 
 	public void reset(){
