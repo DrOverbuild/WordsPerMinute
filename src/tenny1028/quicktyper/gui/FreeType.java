@@ -57,7 +57,6 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				timer.stop();
 				dispose();
-				new ProfileViewer(profile);
 			}
 		});
 		bottom.add(messages, BorderLayout.LINE_START);
@@ -109,14 +108,10 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) {
-
-	}
+	public void keyPressed(KeyEvent e) {}
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-
-	}
+	public void keyReleased(KeyEvent e) {}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -132,12 +127,14 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 		secondsLeft--;
 
 	}
+
 	public void endGame(){
 		timer.stop();
 		area.setEditable(false);
 		messages.setText("0 seconds left");
 		timerRunning = false;
 		float wordsperminute = getWordsPerMinute();
+		profile.registerRate(wordsperminute);
 		if((profile.getHighestRate()<wordsperminute)&&!Float.isInfinite(wordsperminute)){
 			profile.setHighestRate(wordsperminute);
 		}
@@ -148,8 +145,6 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 			saveText();
 		}
 		dispose();
-		profile.setAverageRate(Start.averageOf(new float[]{profile.getAverageRate(), wordsperminute}));
-		new ProfileViewer(profile);
 	}
 
 	@Override
