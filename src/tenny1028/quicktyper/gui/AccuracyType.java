@@ -49,16 +49,16 @@ public class AccuracyType extends JFrame {
 	StopwatchTimer timer;
 	boolean timerIsRunning;
 
-	public AccuracyType(Profile currentProfile){
+	public AccuracyType(Profile currentProfile, String text){
 		super("Accuracy Type");
 
 		this.currentProfile = currentProfile;
 
-		Random r = new Random();
+		/*Random r = new Random();
 		int rr = r.nextInt(numberOfTexts);
-		String areaText = Main.getTXTFileInJar("/accuracytypetexts/text"+rr+".txt");
+		String areaText = Main.getTXTFileInJar("/accuracytypetexts/text"+rr+".txt");*/
 
-		area.setText(areaText);
+		area.setText(text);
 
 		setLayout(new BorderLayout());
 		area.setLineWrap(true);

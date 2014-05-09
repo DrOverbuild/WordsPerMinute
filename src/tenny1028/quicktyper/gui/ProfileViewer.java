@@ -108,7 +108,8 @@ public class ProfileViewer extends JFrame {
 		accuracyType.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AccuracyType(profile);
+				//new AccuracyType(profile);
+				new AccuracyTypeTextChooser(profile);
 				close();
 			}
 		});

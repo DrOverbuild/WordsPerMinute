@@ -7,6 +7,7 @@ package tenny1028.quicktyper;
 
 import tenny1028.quicktyper.exceptions.FileAlreadyExistsException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -31,6 +32,24 @@ public class Main{
 			return "Error";
 		}
 		Scanner sampleScanner = new Scanner(sample);
+		sampleScanner.useDelimiter("");
+		while(sampleScanner.hasNext()){
+			char idk = sampleScanner.next().charAt(0);
+			everyChar.add(new Character(idk));
+		}
+
+		String builder = "";
+
+		for(Character character: everyChar){
+			builder += character; // I tried the concat method, but doesn't work, returns an empty string in return statement below.
+		}
+
+		return builder;
+	}
+
+	public static String getTXTFileNotInJar(File filename) throws FileNotFoundException {
+		ArrayList<Character> everyChar = new ArrayList<>();
+		Scanner sampleScanner = new Scanner(filename);
 		sampleScanner.useDelimiter("");
 		while(sampleScanner.hasNext()){
 			char idk = sampleScanner.next().charAt(0);

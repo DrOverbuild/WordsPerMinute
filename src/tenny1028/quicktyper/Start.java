@@ -31,6 +31,7 @@ public class Start {
 	public File previouslyOpenedProfile;
 	public File lastLoginFile;          //<libraryFolderDirectory>/lastlogin.txt
 	public File savesFolder;            //<libraryFolderDirectory>/saves/
+	public File accuracyTypeTextsFolder;
 
 	public String libraryFolder;
 
@@ -125,6 +126,10 @@ public class Start {
 		String savesFolderFilePath = libraryFolder + "saves" + Main.fileSeparator;
 		savesFolder = new File(savesFolderFilePath);
 		savesFolder.mkdirs();
+
+		// Get accuracyTypeTextsFolder
+		accuracyTypeTextsFolder = new File(libraryFolder+"accuracy_type_data"+Main.fileSeparator);
+		accuracyTypeTextsFolder.mkdirs();
 
 		// Get lastlogin file
 		String lastLogin = libraryFolder + "lastlogin.txt";
