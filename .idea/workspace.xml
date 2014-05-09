@@ -89,10 +89,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccuracyTypeTextChooser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AccuracyTypeTextChooser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/AccuracyTypeTextChooser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34579438" vertical-offset="873" max-vertical-offset="2025">
+            <state vertical-scroll-proportion="0.0" vertical-offset="873" max-vertical-offset="2025">
               <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -111,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="303" max-vertical-offset="945">
-              <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.44392523" vertical-offset="300" max-vertical-offset="975">
+              <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -198,8 +198,8 @@
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileViewer.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/Start.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/gui/AccuracyType.java" />
-        <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/Main.java" />
         <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/gui/AccuracyTypeTextChooser.java" />
+        <option value="$PROJECT_DIR$/src/tenny1028/quicktyper/Main.java" />
       </list>
     </option>
   </component>
@@ -933,6 +933,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1995">
+          <caret line="111" column="53" selection-start-line="111" selection-start-column="53" selection-end-line="111" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/AccuracyTypeTextChooser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="873" max-vertical-offset="2025">
+          <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#551#559#0" expanded="true" />
+            <element signature="e#614#622#0" expanded="true" />
+            <element signature="e#2251#2535#0" expanded="true" />
+            <element signature="e#2530#2531#0" expanded="true" />
+            <element signature="e#2577#3070#0" expanded="true" />
+            <element signature="e#3065#3066#0" expanded="true" />
+            <element signature="e#3101#3208#0" expanded="true" />
+            <element signature="e#3203#3204#0" expanded="true" />
+            <element signature="e#3483#3484#0" expanded="true" />
+            <element signature="e#3505#3506#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/AccuracyType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-126.0" vertical-offset="288" max-vertical-offset="2145">
@@ -959,37 +987,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="303" max-vertical-offset="945">
-          <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.44392523" vertical-offset="300" max-vertical-offset="975">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/ProfileViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1995">
-          <caret line="111" column="53" selection-start-line="111" selection-start-column="53" selection-end-line="111" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tenny1028/quicktyper/gui/AccuracyTypeTextChooser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34579438" vertical-offset="873" max-vertical-offset="2025">
-          <caret line="76" column="10" selection-start-line="76" selection-start-column="10" selection-end-line="76" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#551#559#0" expanded="true" />
-            <element signature="e#614#622#0" expanded="true" />
-            <element signature="e#2251#2535#0" expanded="true" />
-            <element signature="e#2530#2531#0" expanded="true" />
-            <element signature="e#2577#3070#0" expanded="true" />
-            <element signature="e#3065#3066#0" expanded="true" />
-            <element signature="e#3101#3208#0" expanded="true" />
-            <element signature="e#3203#3204#0" expanded="true" />
-            <element signature="e#3483#3484#0" expanded="true" />
-            <element signature="e#3505#3506#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

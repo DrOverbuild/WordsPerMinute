@@ -44,7 +44,9 @@ public class Main{
 			builder += character; // I tried the concat method, but doesn't work, returns an empty string in return statement below.
 		}
 
-		return builder;
+		String replaceAll = builder.replaceAll("#USER_HOME", start.accuracyTypeTextsFolder.getAbsolutePath());
+
+		return replaceAll;
 	}
 
 	public static String getTXTFileNotInJar(File filename) throws FileNotFoundException {
