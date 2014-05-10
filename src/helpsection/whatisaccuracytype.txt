@@ -2,6 +2,6 @@ Accuracy Type focuses on accuracy more than speed. Once you click Accuracy Type 
 
 When you make an error, by typing the wrong character, your errors will go higher. If you keep typing, you will continue to make errors until you finally type the highlighted character.
 
-The text file you choose can be one of two things: one of the text files that comes with this program, or a text file on your computer. The text files on your computer you choose must be in the folder located at #USER_HOME.
+The text file you choose can be one of two things: one of the text files that comes with this program, or a text file on your computer. The text files on your computer you choose must be in the folder located at #ACCURACY_TYPE_DATA_FOLDER.
 
 It may be a good idea to resize the window before you start to your preferred size. It is recommended you resize it so you can see everything you must type. This way, no scrolling is done during the exercise.

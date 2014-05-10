@@ -10,11 +10,15 @@ import tenny1028.quicktyper.Profile;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.util.Collections;
+import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by jasper on 5/9/14.
@@ -23,8 +27,8 @@ public class AccuracyTypeTextChooser extends JFrame {
 
 	Profile profile;
 
-	JComboBox<String> defaultTexts = new JComboBox<String>();
-	JComboBox<String> userDefinedTexts = new JComboBox<String>();
+	JComboBox<String> defaultTexts;
+	JComboBox<String> userDefinedTexts;
 	JButton chooseDefault = new JButton("Choose Default");
 	JButton chooseUserDefined = new JButton("Choose text file");
 	JButton cancel = new JButton("Cancel");
@@ -48,7 +52,7 @@ public class AccuracyTypeTextChooser extends JFrame {
 			String x = "text"+i+".txt";
 			defaultTextsNames[i]=x;
 		}
-		defaultTexts = new JComboBox<String>(defaultTextsNames);
+		defaultTexts = new JComboBox<>(defaultTextsNames);
 		left.add(defaultTexts);
 		left.add(chooseDefault);
 
@@ -58,13 +62,16 @@ public class AccuracyTypeTextChooser extends JFrame {
 
 
 		File[] customTexts = Main.start.accuracyTypeTextsFolder.listFiles();
-		String[] customTextsNames = new String[customTexts.length];
-		int iiii = 0;
+		String[] customTextsNames = new String[]{};
+		List<String> theSameThingAsCustomTextsNamesButItIsAListInsteadOfAnArray = new ArrayList<>();
 		for(File file:customTexts){
-			customTextsNames[iiii] = file.getName();
-			iiii++;
+			if(!file.isHidden()){
+				theSameThingAsCustomTextsNamesButItIsAListInsteadOfAnArray.add(file.getName());
+			}
 		}
-		userDefinedTexts = new JComboBox<String>(customTextsNames);
+		customTextsNames = theSameThingAsCustomTextsNamesButItIsAListInsteadOfAnArray.toArray(customTextsNames);
+
+		userDefinedTexts = new JComboBox<>(customTextsNames);
 		right.add(userDefinedTexts);
 		right.add(chooseUserDefined);
 
@@ -74,7 +81,7 @@ public class AccuracyTypeTextChooser extends JFrame {
 
 		JPanel bottom = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		bottom.add(cancel);
-		//bottom.add(chooseRandom);
+		bottom.add(chooseRandom);
 		add(bottom,BorderLayout.SOUTH);
 
 		chooseDefault.addActionListener(new ActionListener() {
@@ -111,6 +118,16 @@ public class AccuracyTypeTextChooser extends JFrame {
 			}
 		});
 
+		chooseRandom.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] texts = getAllAvailableTexts();
+				Random r = new Random();
+				new AccuracyType(profile, texts[r.nextInt(texts.length)]);
+				closeWindow();
+			}
+		});
+
 		pack();
 		setMinimumSize(getSize());
 		setLocationRelativeTo(null);
@@ -129,4 +146,38 @@ public class AccuracyTypeTextChooser extends JFrame {
 		super.dispose();
 	}
 
+	/**
+	 * Grabs all text files that are available in the jar file and all the files
+	 * available in the accuracy type data folder on the user's computer.
+	 * @return An array of strings, each string containing the contents of one of
+	 * the files
+	 */
+	public String[] getAllAvailableTexts(){
+		File[] customTexts = Main.start.accuracyTypeTextsFolder.listFiles();
+		List<File> itsAListBecauseILikeLists = new ArrayList<>();
+		for(File file:customTexts){
+			if(!file.isHidden()){
+				itsAListBecauseILikeLists.add(file);
+			}
+		}
+
+		String[] texts = new String[itsAListBecauseILikeLists.size()+AccuracyType.numberOfTexts];
+		int iiii = 0;
+		for(File file:itsAListBecauseILikeLists){
+			try {
+				texts[iiii] = Main.getTXTFileNotInJar(file);
+			} catch(FileNotFoundException e) {
+				texts[iiii] = "Error";
+			}
+			iiii++;
+		}
+
+		for(int i = 0; i<AccuracyType.numberOfTexts; i++){
+			String x = Main.getTXTFileInJar("/accuracytypetexts/text"+i+".txt");
+			texts[i+iiii]=x;
+		}
+
+		return texts;
+
+	}
 }

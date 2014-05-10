@@ -37,7 +37,7 @@ public class Start {
 
 	public Profile currentlyOpenProfile;
 
-	public static final float VERSION_ID = 0.1f;
+	public static final String VERSION_ID = "0.1";
 
 	public void start(String[] args) {
 

@@ -44,7 +44,7 @@ public class Main{
 			builder += character; // I tried the concat method, but doesn't work, returns an empty string in return statement below.
 		}
 
-		String replaceAll = builder.replaceAll("#USER_HOME", start.accuracyTypeTextsFolder.getAbsolutePath());
+		String replaceAll = builder.replaceAll("#ACCURACY_TYPE_DATA_FOLDER", start.accuracyTypeTextsFolder.getAbsolutePath());
 
 		return replaceAll;
 	}
