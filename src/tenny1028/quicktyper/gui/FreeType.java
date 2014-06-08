@@ -8,6 +8,7 @@ package tenny1028.quicktyper.gui;
 import tenny1028.quicktyper.Main;
 import tenny1028.quicktyper.Profile;
 import tenny1028.quicktyper.Start;
+import tenny1028.quicktyper.gui.util.StaticMethods;
 
 import javax.swing.*;
 import javax.swing.Timer;
@@ -73,10 +74,8 @@ public class FreeType extends JFrame implements KeyListener, ActionListener {
 	}
 
 	public float getWordsPerMinute(){
-		int numberOfWords = area.getText().split(" ").length;
-		float seconds = profile.getFreeTypeTime()-secondsLeft;
-		float minutes = seconds/60;
-		return Start.roundTo(numberOfWords/minutes,2);
+		int seconds = profile.getFreeTypeTime()-secondsLeft;
+		return StaticMethods.getWordsPerMinute(area.getText(), seconds);
 	}
 
 	private void saveText(){

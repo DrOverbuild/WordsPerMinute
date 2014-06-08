@@ -9,6 +9,7 @@ import tenny1028.quicktyper.Main;
 import tenny1028.quicktyper.Profile;
 import tenny1028.quicktyper.Start;
 import tenny1028.quicktyper.gui.caret.BlockStyleCaret;
+import tenny1028.quicktyper.gui.util.StaticMethods;
 import tenny1028.quicktyper.timer.StopwatchTimer;
 import tenny1028.quicktyper.timer.StopwatchTimerAction;
 
@@ -147,7 +148,7 @@ public class AccuracyType extends JFrame {
 
 	public float formatToPercent(float accuracy){
 		accuracy *= 100;
-		return Start.roundTo(accuracy,2);
+		return StaticMethods.roundTo(accuracy,2);
 	}
 	/**
 	 * Ends the typing and returns to profile viewer. <em>DOES NOT TERMINATE USER.</em> Seriously, why would it terminate
@@ -180,10 +181,6 @@ public class AccuracyType extends JFrame {
 	}
 
 	public float getWordsPerMinute(){
-		int words = area.getText().split(" ").length;
-		int seconds = timer.getElapsedTime();
-		float minutes = seconds / 60.0f; // If 60 was an int, the result would be zero if seconds was less than 60, so
-										 // 60 will be of type float.
-		return Start.roundTo(words/minutes,2);
+		return StaticMethods.getWordsPerMinute(area.getText(),timer.getElapsedTime());
 	}
 }

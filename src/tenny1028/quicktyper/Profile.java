@@ -5,6 +5,8 @@
 
 package tenny1028.quicktyper;
 
+import tenny1028.quicktyper.gui.util.StaticMethods;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -102,11 +104,11 @@ public class Profile {
 	}
 
 	public void registerAccuracy(float accuracy){
-		setAverageAccuracy((getAverageAccuracy()==0.0f)?accuracy:Start.roundTo(Start.averageOf(new float[]{accuracy, getAverageAccuracy()}), 2));
+		setAverageAccuracy((getAverageAccuracy()==0.0f)?accuracy: StaticMethods.roundTo(StaticMethods.averageOf(new float[]{accuracy, getAverageAccuracy()}), 2));
 	}
 
 	public void registerRate(float rate){
-		setAverageRate((getAverageRate()==0.0f)?rate:Start.roundTo(Start.averageOf(new float[]{rate, getAverageAccuracy()}), 2));
+		setAverageRate((getAverageRate()==0.0f)?rate:StaticMethods.roundTo(StaticMethods.averageOf(new float[]{rate, getAverageAccuracy()}), 2));
 	}
 
 	public void reset(){
@@ -143,7 +145,7 @@ public class Profile {
 
 	}
 
-	public void setAverageRate(float averageRate) { this.averageRate = Start.roundTo(averageRate,2); }
+	public void setAverageRate(float averageRate) { this.averageRate = StaticMethods.roundTo(averageRate,2); }
 
 	public void setHighestRate(float highestRate) {
 		this.highestRate = highestRate;

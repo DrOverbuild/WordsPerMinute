@@ -37,7 +37,7 @@ public class Start {
 
 	public Profile currentlyOpenProfile;
 
-	public static final String VERSION_ID = "0.1";
+	public static final String VERSION_ID = "beta-0.4";
 
 	public void start(String[] args) {
 
@@ -255,21 +255,4 @@ public class Start {
 		}
 	}
 
-	public static float averageOf(float[] floats){
-		float total = 0.0f;
-		for(int i = 0; i<floats.length;i++){
-			total += floats[i];
-		}
-		return total/floats.length;
-	}
-
-	public static float roundTo(float f,int decimalPlaces){
-		try{
-			BigDecimal bd = new BigDecimal(f);
-			bd = bd.setScale(decimalPlaces, BigDecimal.ROUND_HALF_UP);
-			return bd.floatValue();
-		}catch(NumberFormatException e){
-			return 0;
-		}
-	}
 }
