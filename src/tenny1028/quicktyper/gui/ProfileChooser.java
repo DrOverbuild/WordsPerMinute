@@ -78,8 +78,9 @@ public class ProfileChooser extends JFrame{
 		panel2.add(button3);
 		add(panel1, BorderLayout.CENTER);
 		add(panel2,BorderLayout.PAGE_END);
-
-		jComboBox.setSelectedItem(Main.start.getLastOpened());
+        if(Main.start.getLastOpened() != null) {
+            jComboBox.setSelectedItem(Main.start.getLastOpened());
+        }
 		getRootPane().setDefaultButton(button1);
 
 		pack();

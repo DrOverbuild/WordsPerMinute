@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -37,7 +38,7 @@ public class Start {
 
 	public Profile currentlyOpenProfile;
 
-	public static final String VERSION_ID = "beta-0.4";
+	public static final String VERSION_ID = "beta-0.5";
 
 	public void start(String[] args) {
 
@@ -134,12 +135,10 @@ public class Start {
 		// Get lastlogin file
 		String lastLogin = libraryFolder + "lastlogin.txt";
 		lastLoginFile = new File(lastLogin);
-		if(!lastLoginFile.exists()){
-			try{
-				lastLoginFile.createNewFile();
-			}catch(SecurityException | IOException e){
-			}
-		}
+        try{
+            lastLoginFile.createNewFile();
+        }catch(SecurityException | IOException e){
+        }
 		return hasBeenOpened;
 	}
 	public void createProfile(String profileName) throws FileAlreadyExistsException {
@@ -211,7 +210,9 @@ public class Start {
 			return scanner.nextLine();
 		} catch(FileNotFoundException e) {
 			return null;
-		}
+		} catch(NoSuchElementException e){
+            return null;
+        }
 
 	}
 	public File getProfile(String profile){
