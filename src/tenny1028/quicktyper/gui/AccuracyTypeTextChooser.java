@@ -10,6 +10,9 @@ import tenny1028.quicktyper.Profile;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.awt.*;
@@ -33,6 +36,7 @@ public class AccuracyTypeTextChooser extends JFrame {
 	JButton chooseUserDefined = new JButton("Choose text file");
 	JButton cancel = new JButton("Cancel");
 	JButton chooseRandom = new JButton("Choose Random");
+	JButton openTextsFolder = new JButton("Open data folder");
 
 	public AccuracyTypeTextChooser(Profile p){
 		super("Choose something to type");
@@ -63,18 +67,17 @@ public class AccuracyTypeTextChooser extends JFrame {
 
 		File[] customTexts = Main.start.accuracyTypeTextsFolder.listFiles();
 		String[] customTextsNames = new String[]{};
-		List<String> theSameThingAsCustomTextsNamesButItIsAListInsteadOfAnArray = new ArrayList<>();
+		List<String> theSameThingAsTheVariableAboveButItIsAListInsteadOfAnArray = new ArrayList<>();
 		for(File file:customTexts){
 			if(!file.isHidden()){
-				theSameThingAsCustomTextsNamesButItIsAListInsteadOfAnArray.add(file.getName());
+				theSameThingAsTheVariableAboveButItIsAListInsteadOfAnArray.add(file.getName());
 			}
 		}
-		customTextsNames = theSameThingAsCustomTextsNamesButItIsAListInsteadOfAnArray.toArray(customTextsNames);
+		customTextsNames = theSameThingAsTheVariableAboveButItIsAListInsteadOfAnArray.toArray(customTextsNames);
 
 		userDefinedTexts = new JComboBox<>(customTextsNames);
 		right.add(userDefinedTexts);
 		right.add(chooseUserDefined);
-
 
 		add(left, BorderLayout.WEST);
 		add(right, BorderLayout.EAST);
@@ -82,7 +85,19 @@ public class AccuracyTypeTextChooser extends JFrame {
 		JPanel bottom = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		bottom.add(cancel);
 		bottom.add(chooseRandom);
-		add(bottom,BorderLayout.SOUTH);
+		bottom.add(openTextsFolder);
+		add(bottom, BorderLayout.SOUTH);
+
+		openTextsFolder.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Desktop.getDesktop().open(Main.start.accuracyTypeTextsFolder);
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null,"Could not open file browser.","Error",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 
 		chooseDefault.addActionListener(new ActionListener() {
 			@Override
@@ -125,6 +140,30 @@ public class AccuracyTypeTextChooser extends JFrame {
 				Random r = new Random();
 				new AccuracyType(profile, texts[r.nextInt(texts.length)]);
 				closeWindow();
+			}
+		});
+
+		this.addWindowFocusListener(new WindowFocusListener() {
+			@Override
+			public void windowGainedFocus(WindowEvent e) {
+				File[] customTexts = Main.start.accuracyTypeTextsFolder.listFiles();
+				String[] customTextsNames = new String[]{};
+				List<String> theSameThingAsTheVariableAboveButItIsAListInsteadOfAnArray = new ArrayList<>();
+				for(File file:customTexts){
+					if(!file.isHidden()){
+						theSameThingAsTheVariableAboveButItIsAListInsteadOfAnArray.add(file.getName());
+					}
+				}
+				customTextsNames = theSameThingAsTheVariableAboveButItIsAListInsteadOfAnArray.toArray(customTextsNames);
+				userDefinedTexts.removeAllItems();
+				for(String name:customTextsNames){
+					userDefinedTexts.addItem(name);
+				}
+			}
+
+			@Override
+			public void windowLostFocus(WindowEvent e) {
+
 			}
 		});
 

@@ -14,9 +14,11 @@ import java.math.BigDecimal;
  */
 public class StaticMethods {
 
-	public static float getWordsPerMinute(String words, int seconds){
+	public static float getWordsPerMinute(String text, int seconds){
 		float minutes = seconds / 60.0f;
-		return roundTo((words.length()/5) / minutes, 2);
+		int words = text.length()/5;
+		System.out.println("Words: " + words + ", minutes: " + minutes);
+		return roundTo(words / minutes, 2);
 	}
 
 	public static float roundTo(float f,int decimalPlaces){
